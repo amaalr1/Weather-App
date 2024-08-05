@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const cityInput = document.getElementById('city-input');
     const weatherResult = document.getElementById('weather-result');
 
-    getWeatherButton.addEventListener('click', weatherInfo());
+    getWeatherButton.addEventListener('click', weatherInfo);
 
     cityInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter'){
             weatherInfo()
         }
-    }):
+    });
 
     async function weatherInfo() {
         const city = cityInput.value.trim();
@@ -47,7 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
         weatherResult.innerHTML = `
             <p><strong>City:</strong> ${name}</p>
             <p><strong>Temperature:</strong> ${main.temp} °C</p>
+            <p><strong>Feels like:</strong> ${main.feels_like} °C</p>
             <p><strong>Humidity:</strong> ${main.humidity}%</p>
             <p><strong>Weather:</strong> ${weather[0].description}</p>`;
-    }
+    } //temperature and humidity are both properties nested within the "main" property
+
+    // The weather[0] is used as it gives multiple weather conditions sometimes so this ensures that the first one is used
 });
